@@ -1,22 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toutes les Questions</title>
 </head>
+
+<style>
+    body {
+        display: flex;
+        height: 80vh;
+    }
+
+    .wrap {
+        width: 40%;
+        padding: 30px;
+        background-color: lightgray;
+        margin: auto;
+    }
+
+    .question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .edit {
+        display: flex;
+    }
+
+    .edit a {
+        margin: 0 5px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .btn {
+        background-color: grey;
+        display: inline-block;
+        padding: 10px 15px;
+    }
+</style>
+
 <body>
     <div class="wrap">
-        <h1>Liste des questions</h1><hr>
-        <p><a href="{% url 'questions:add' %}">Poser des questions</a></p>
+        <h1>Liste des questions</h1>
+        <p class="btn"><a href="{% url 'questions:add' %}">Poser des questions</a></p>
         {% for question in questions %}
-        <div>
+        <div class="question">
             <p>{{question.text}}</p>
-            <a href="{% url 'questions:edit' question.id %}">éditer</a>
-            <a href="{% url 'questions:delete' question.id %}">supprimer</a>
+            <div class="edit">
+                <a class="btn" href="{% url 'questions:edit' question.id %}">éditer</a>
+                <a class="btn" href="{% url 'questions:delete' question.id %}">supprimer</a>
+            </div>
         </div>
         {% endfor %}
     </div>
 </body>
+
 </html>
