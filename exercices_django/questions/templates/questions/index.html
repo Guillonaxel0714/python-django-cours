@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toutes les Questions</title>
+</head>
+<body>
+    <div class="wrap">
+        <h1>Liste des questions</h1><hr>
+        <p><a href="{% url 'questions:add' %}">Poser des questions</a></p>
+        {% for question in questions %}
+        <div>
+            <p>{{question.text}}</p>
+            <a href="{% url 'questions:edit' question.id %}">éditer</a>
+            <a href="{% url 'questions:delete' question.id %}">supprimer</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
